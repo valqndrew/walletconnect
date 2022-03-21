@@ -9,8 +9,10 @@ import {
 import MoneyBag from "../../img/money-bag.svg";
 import Bitcoin from "../../img/bitcoin-1.svg";
 import BitcoinCard from "../../img/bitcoin-2.svg";
-import { FeaturePaper, SectionHeader } from "../styles/styles";
+import { FeaturePaper, SectionHeader, theme } from "../styles/styles";
 import { NavLink } from "react-router-dom";
+import '../styles/styles.css'
+
 
 const features = [
   {
@@ -30,12 +32,15 @@ const features = [
   },
 ];
 
+
 const Feature = ({ title, info, icon }) => {
   return (
     <Grid item xs={12}>
       <FeaturePaper>
-        <Avatar src={icon} />
+
+        <img src={icon} className={"icon"} />
         <Typography>{title}</Typography>
+
         <Typography>{info}</Typography>
         <Button component={NavLink} to="/wallets" variant="contained">
           Resolve

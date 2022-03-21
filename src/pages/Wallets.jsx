@@ -1,68 +1,8 @@
-import React from "react";
-import {
-  AppBar,
-  Avatar,
-  Box,
-  Container,
-  Grid,
-  Toolbar,
-  Typography,
-} from "@mui/material";
-import Trust from "../img/trust.svg";
-import Metamask from "../img/metamask.svg";
-import styled from "@emotion/styled";
+import React, { useContext } from "react";
+import { Avatar, Container, Grid, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
-
-const StyledToolbar = styled(Toolbar)(({ theme }) => ({
-  alignItems: "space-between",
-  justifyContent: "space-between",
-  paddingTop: 12,
-  paddingBottom: 12,
-  "@media all": {
-    minHeight: 128,
-  },
-}));
-
-function ProminentAppBar() {
-  return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <StyledToolbar>
-          <Typography variant="h5">Connect DAPPS-Apps</Typography>
-          <Typography variant="h1">WC</Typography>
-          <Typography variant="h5">Wallets</Typography>
-        </StyledToolbar>
-      </AppBar>
-    </Box>
-  );
-}
-
-const wallets = [
-  {
-    name: "trustwallet",
-    src: Trust,
-  },
-  {
-    name: "metamask",
-    src: Metamask,
-  },
-  {
-    name: "trustwallet",
-    src: Trust,
-  },
-  {
-    name: "metamask",
-    src: Metamask,
-  },
-  {
-    name: "trustwallet",
-    src: Trust,
-  },
-  {
-    name: "metamask",
-    src: Metamask,
-  },
-];
+import LandingAppBar from "./Components/LandingAppBar";
+import { WalletContext, WalletProvider } from "../context/WalletContext";
 
 const WalletItem = ({ name, src }) => {
   return (
@@ -76,22 +16,23 @@ const WalletItem = ({ name, src }) => {
 };
 
 const Wallets = () => {
+  const [wallets, setWallets] = useContext(WalletContext);
   return (
-    <Container align="center">
-      <ProminentAppBar />
-      <Typography variant="h4" gutterBottom>
-        Dapps
-      </Typography>
-      <Typography variant="p">
-        Registry to connect all wallets and Apps supporting WalletConnect
-        Protocols to dapps
-      </Typography>
-      <Grid container justifyContent={"center"} spacing={12}>
-        {wallets.map(({ name, src }) => (
-          <WalletItem name={name} src={src} />
-        ))}
-      </Grid>
-    </Container>
+      <Container align="center">
+        <LandingAppBar />
+        <Typography variant="h4" gutterBottom>
+          Dapps
+        </Typography>
+        <Typography variant="p">
+          Registry to connect all wallets and Apps supporting WalletConnect
+          Protocols to dapps
+        </Typography>
+        <Grid container justifyContent={"center"} spacing={12}>
+          {wallets.map(({ name, src }) => (
+            <WalletItem name={name} src={src} />
+          ))}
+        </Grid>
+      </Container>
   );
 };
 

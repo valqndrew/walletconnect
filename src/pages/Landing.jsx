@@ -21,6 +21,8 @@ import Footer from "./Components/Footer";
 import LandingAppBar from "./Components/LandingAppBar";
 import { NavLink } from "react-router-dom";
 
+import Hero from "../img/hero-image.svg";
+
 const Landing = () => {
   return (
     <>
@@ -40,6 +42,8 @@ const Landing = () => {
           </Button>
           <Button>How It Works</Button>
         </Box>
+
+        {/* <Hero /> */}
 
         <Features />
         <HowItWorks />

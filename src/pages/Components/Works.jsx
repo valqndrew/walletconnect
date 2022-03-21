@@ -35,7 +35,7 @@ const works = [
 const Work = ({ title, info, icon }) => {
   return (
     <Grid item>
-      <Avatar src={icon} />
+      <img src={icon} className="icon"/>
       <Typography variant="h6">{title}</Typography>
       <Typography variant="p">{info}</Typography>
     </Grid>
