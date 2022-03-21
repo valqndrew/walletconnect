@@ -19,6 +19,7 @@ import HeroImage from "../img/hero-image.svg";
 import HowItWorks from "./Components/Works";
 import Footer from "./Components/Footer";
 import LandingAppBar from "./Components/LandingAppBar";
+import { NavLink } from "react-router-dom";
 
 const Landing = () => {
   return (
@@ -34,7 +35,9 @@ const Landing = () => {
           related glitches.
         </Typography>
         <Box sx={{ marginTop: "16px" }}>
-          <Button variant="contained">Connect To DApps</Button>
+          <Button component={NavLink} to="/wallets" variant="contained">
+            Connect To DApps
+          </Button>
           <Button>How It Works</Button>
         </Box>
 
