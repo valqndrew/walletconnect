@@ -1,7 +1,15 @@
-import { Avatar, Button, Grid, Paper, SvgIcon, Typography } from "@mui/material";
+import {
+  Avatar,
+  Button,
+  Grid,
+  Paper,
+  SvgIcon,
+  Typography,
+} from "@mui/material";
 import MoneyBag from "../../img/money-bag.svg";
 import Bitcoin from "../../img/bitcoin-1.svg";
 import BitcoinCard from "../../img/bitcoin-2.svg";
+import { FeaturePaper, SectionHeader } from "../styles/styles";
 
 const features = [
   {
@@ -23,13 +31,13 @@ const features = [
 
 const Feature = ({ title, info, icon }) => {
   return (
-    <Grid item>
-      <Paper>
-          <Avatar src={icon} />
+    <Grid item xs={12}>
+      <FeaturePaper>
+        <Avatar src={icon} />
         <Typography>{title}</Typography>
         <Typography>{info}</Typography>
         <Button variant="contained">Resolve</Button>
-      </Paper>
+      </FeaturePaper>
     </Grid>
   );
 };
@@ -37,9 +45,11 @@ const Feature = ({ title, info, icon }) => {
 const Features = () => {
   return (
     <>
-      <Typography variant="h4">Our Features</Typography>
+      <SectionHeader variant="h4" gutterBottom>
+        Our Features
+      </SectionHeader>
 
-      <Grid container align="center" justifyContent="center">
+      <Grid container spacing={8} align="center" justifyContent="center">
         {features.map(({ title, info, icon }) => (
           <Feature title={title} info={info} icon={icon} />
         ))}

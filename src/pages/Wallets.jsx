@@ -28,23 +28,9 @@ function ProminentAppBar() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <StyledToolbar>
-          <Typography
-            variant="h5"
-            // noWrap
-            // component="div"
-            // sx={{ flexGrow: 1, alignSelf: "flex-end" }}
-          >
-            Connect DAPPS-Apps
-          </Typography>
+          <Typography variant="h5">Connect DAPPS-Apps</Typography>
           <Typography variant="h1">WC</Typography>
-          <Typography
-            variant="h5"
-            // noWrap
-            // component="div"
-            // sx={{ flexGrow: 1, alignSelf: "flex-end" }}
-          >
-            Wallets
-          </Typography>
+          <Typography variant="h5">Wallets</Typography>
         </StyledToolbar>
       </AppBar>
     </Box>
