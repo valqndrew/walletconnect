@@ -40,7 +40,9 @@ const Landing = () => {
           <Button component={NavLink} to="/wallets" variant="contained">
             Connect To DApps
           </Button>
-          <Button>How It Works</Button>
+          <Button component={NavLink} to="/help">
+            How It Works
+          </Button>
         </Box>
 
         {/* <Hero /> */}
