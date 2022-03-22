@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import { WalletContext } from "../context/WalletContext";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -80,6 +81,7 @@ function BasicTabs() {
 }
 
 const ImportWallet = () => {
+  const [currentWallet] = React.useContext(WalletContext)
   return (
     <Container
       sx={{ background: "grey", height: "100vh", width: "50%", margin: "auto" }}
