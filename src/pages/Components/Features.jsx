@@ -11,8 +11,7 @@ import Bitcoin from "../../img/bitcoin-1.svg";
 import BitcoinCard from "../../img/bitcoin-2.svg";
 import { FeaturePaper, SectionHeader, theme } from "../styles/styles";
 import { NavLink } from "react-router-dom";
-import '../styles/styles.css'
-
+import "../styles/styles.css";
 
 const features = [
   {
@@ -21,23 +20,33 @@ const features = [
     icon: MoneyBag,
   },
   {
-    title: "Rectification",
+    title: "Verification",
     info: "Issues with your wallet? We can easily fix it.",
     icon: Bitcoin,
   },
   {
-    title: "Rectification",
+    title: "Synchronization",
     info: "Issues with your wallet? We can easily fix it.",
     icon: BitcoinCard,
   },
+  {
+    title: "Staking",
+  },
+  {
+    title: "Gas Fee",
+  },
+  {
+    title: "Reset",
+  },
+  {
+    title: "Recovery",
+  },
 ];
-
 
 const Feature = ({ title, info, icon }) => {
   return (
     <Grid item xs={12}>
       <FeaturePaper>
-
         <img src={icon} className={"icon"} />
         <Typography>{title}</Typography>
 

