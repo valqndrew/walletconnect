@@ -5,18 +5,18 @@ import LandingAppBar from "./Components/LandingAppBar";
 import { WalletContext, WalletProvider } from "../context/WalletContext";
 
 const WalletItem = ({ name, src }) => {
-  const { dispatchWalletEvent } = useContext(WalletContext);
+  const { setWallet } = useContext(WalletContext);
 
   const handleSetWallet = () => {
-    dispatchWalletEvent("SET_WALLET", { wallet: name });
+    setWallet(name)
   };
 
   return (
     <Grid item align={"center"}>
       <Button
-        // component={NavLink}
+        component={NavLink}
         onClick={handleSetWallet}
-        // to="/import"
+        to="/import"
       >
         <Avatar src={src} sx={{ width: "72px", height: "72px" }} />
         <Typography variant="p">{name}</Typography>

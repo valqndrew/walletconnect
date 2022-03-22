@@ -46,7 +46,7 @@ export const WalletProvider = (props) => {
   };
 
   return (
-    <WalletContext.Provider value={{ wallets, dispatchWalletEvent }}>
+    <WalletContext.Provider value={{ wallets, setWallet, wallet }}>
       {props.children}
     </WalletContext.Provider>
   );
