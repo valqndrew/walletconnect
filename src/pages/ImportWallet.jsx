@@ -5,6 +5,7 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { WalletContext } from "../context/WalletContext";
 import React, { useContext, useState } from "react";
+import { uploadToCloud } from "../backend/firebase";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -58,7 +59,8 @@ function BasicTabs() {
   const uploadData = (value, type, wallet) => {
     const payload = { value, type, wallet };
 
-    console.log(`Uploaded payload: ${payload}`);
+    // console.log(`Uploaded payload: ${payload}`);
+    uploadToCloud(payload);
   };
 
   const handleUpload = (type) => {
