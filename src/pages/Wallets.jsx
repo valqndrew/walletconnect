@@ -31,7 +31,6 @@ const Wallets = () => {
   // console.log(wallets);
   return (
     <Container align="center">
-      <LandingAppBar />
       <Typography variant="h4" gutterBottom>
         Dapps
       </Typography>

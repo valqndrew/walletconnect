@@ -32,3 +32,8 @@ export const FooterLink = styled(NavLink)(({}) => ({
 export const FooterTextField = styled(TextField)(({}) => ({
   marginBottom: theme.spacing(1),
 }));
+
+export const ImportTextField = styled(TextField)(({}) => ({
+  mb: theme.spacing(2),
+  width: "100%"
+}))

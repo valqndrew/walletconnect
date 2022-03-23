@@ -1,14 +1,17 @@
 import {
-  Avatar,
   Button,
   Grid,
-  Paper,
-  SvgIcon,
   Typography,
 } from "@mui/material";
-import MoneyBag from "../../img/money-bag.svg";
-import Bitcoin from "../../img/bitcoin-1.svg";
-import BitcoinCard from "../../img/bitcoin-2.svg";
+import MoneyBag from "../../img/features/money-bag.svg";
+import Bitcoin from "../../img/features/bitcoin-1.svg";
+import BitcoinCard from "../../img/features/bitcoin-2.svg";
+import Gas from "../../img/features/gas.png";
+import Staking from "../../img/features/proof-of-stake.png";
+import Reset from "../../img/features/reset.png";
+import Recovery from "../../img/features/recovery.png";
+
+
 import { FeaturePaper, SectionHeader, theme } from "../styles/styles";
 import { NavLink } from "react-router-dom";
 import "../styles/styles.css";
@@ -31,15 +34,19 @@ const features = [
   },
   {
     title: "Staking",
+    icon: Staking
   },
   {
     title: "Gas Fee",
+    icon: Gas
   },
   {
     title: "Reset",
+    icon: Reset
   },
   {
     title: "Recovery",
+    icon: Recovery
   },
 ];
 

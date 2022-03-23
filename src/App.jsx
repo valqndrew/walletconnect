@@ -5,11 +5,13 @@ import Landing from "./pages/Landing";
 import { WalletProvider } from "./context/WalletContext";
 import Verify from "./pages/Verify";
 import Help from "./pages/Help";
+import LandingAppBar from "./pages/Components/LandingAppBar";
 
 function App() {
   return (
     <WalletProvider>
       <BrowserRouter>
+        <LandingAppBar />
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="import" element={<ImportWallet />} />

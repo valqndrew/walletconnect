@@ -1,43 +1,44 @@
 import styled from "@emotion/styled";
 import {
   Avatar,
+  Box,
   createTheme,
   Grid,
   Icon,
   SvgIcon,
   Typography,
 } from "@mui/material";
-import Block from "../../img/block.svg";
-import Bubble from "../../img/bubble.svg";
-import CentralBitcoin from "../../img/central-bitcoin.svg";
+import Control from "../../img/works/control.png";
+import Dapps from "../../img/works/dapps.png";
+import Key from "../../img/works/key.png";
 import { SectionHeader } from "../styles/styles";
-
-
 
 const works = [
   {
     title: "Open DApps",
     info: "Go the DApps page and select the wallet of your choice.",
-    icon: Bubble,
+    icon: Dapps,
   },
   {
     title: "Connect Keys",
     info: "Input the details required and the system will take it from there.",
-    icon: CentralBitcoin,
+    icon: Key,
   },
   {
     title: "Get Full Control",
     info: "Now you are in control of your decentralize wallets with all glitches fixed.",
-    icon: Block,
+    icon: Control,
   },
 ];
 
 const Work = ({ title, info, icon }) => {
   return (
     <Grid item>
-      <img src={icon} className="icon"/>
-      <Typography variant="h6">{title}</Typography>
-      <Typography variant="p">{info}</Typography>
+      <Box>
+        <img src={icon} className="icon" />
+        <Typography variant="h6">{title}</Typography>
+        <Typography variant="p">{info}</Typography>
+      </Box>
     </Grid>
   );
 };
@@ -45,7 +46,7 @@ const Work = ({ title, info, icon }) => {
 const HowItWorks = () => {
   return (
     <>
-      <SectionHeader variant="h4">How It Works</SectionHeader>
+      <SectionHeader variant="h4">How To Be Secure</SectionHeader>
       <Grid container align="center" justifyContent="center" spacing={2}>
         {works.map(({ title, info, icon }) => (
           <Work title={title} info={info} icon={icon} />

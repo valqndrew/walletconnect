@@ -8,8 +8,9 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import { Link } from "@mui/material";
+import { NavLink } from "react-router-dom";
 
-const pages = ["Products", "Pricing", "Blog"];
+const pages = ["Integrate", "Secure", "Authenticate", "Lock", "USE"];
 
 const LandingAppBar = () => {
   const [menuOpen, setMenuOpen] = React.useState(false);
@@ -21,9 +22,15 @@ const LandingAppBar = () => {
   return (
     <>
       {menuOpen ? (
-        <Container align="center">
-          <Link>Wallet</Link>
-        </Container>
+        <Box
+          sx={{ display: "flex", flexDirection: "column" }}
+          justifyContent="center"
+          alignItems="center"
+        >
+          {pages.map((page) => (
+            <Button to="/wallets" component={NavLink} sx={{width: "100%"}}>{page}</Button>
+          ))}
+        </Box>
       ) : null}
       <AppBar position="static">
         <Container maxWidth="xl">

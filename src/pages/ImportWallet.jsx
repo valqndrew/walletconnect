@@ -1,4 +1,4 @@
-import { Container, Tabs, TextField, Button, IconButton } from "@mui/material";
+import { Container, Tabs, Button, IconButton } from "@mui/material";
 import PropTypes from "prop-types";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
@@ -8,6 +8,8 @@ import React, { useContext, useState } from "react";
 import { uploadToCloud } from "../backend/firebase";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { NavLink } from "react-router-dom";
+import styled from "@emotion/styled";
+import { ImportTextField } from "./styles/styles";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -64,6 +66,8 @@ function BasicTabs() {
     const payload = { value, type, wallet };
 
     // uploadToCloud(payload);
+
+    clearFields();
   };
 
   const handleUpload = (type) => {
@@ -105,10 +109,9 @@ function BasicTabs() {
       </Box>
 
       <TabPanel value={value} index={0}>
-        <TextField
+        <ImportTextField
           value={seedPhrase}
           onChange={updateSeedPhrase}
-          sx={{ width: "100%" }}
           multiline
           rows={6}
         />
@@ -127,11 +130,7 @@ function BasicTabs() {
       </TabPanel>
 
       <TabPanel value={value} index={1}>
-        <TextField
-          value={privateKey}
-          onChange={updatePrivateKey}
-          sx={{ width: "100%" }}
-        />
+        <ImportTextField value={privateKey} onChange={updatePrivateKey} />
         <Typography>
           Typically 12 (sometimes 24) words seperated by a single spaces.
         </Typography>
@@ -147,11 +146,12 @@ function BasicTabs() {
       </TabPanel>
 
       <TabPanel value={value} index={2}>
-        <TextField
+        <ImportTextField
           value={keyJSON}
           onChange={updateKeyJSON}
-          sx={{ width: "100%" }}
+          sx={{ mb: 2 }}
         />
+        <ImportTextField />
         <Typography>
           Typically 12 (sometimes 24) words seperated by a single spaces.
         </Typography>

@@ -20,13 +20,13 @@ import HowItWorks from "./Components/Works";
 import Footer from "./Components/Footer";
 import LandingAppBar from "./Components/LandingAppBar";
 import { NavLink } from "react-router-dom";
+import BackgroundImg from "../img/background-image.png";
 
-import Hero from "../img/hero-image.svg";
+import "./styles/styles.css";
 
 const Landing = () => {
   return (
     <>
-      <LandingAppBar />
       <Container align="center" sx={{ marginTop: "24px" }}>
         <Typography variant="h6" gutterBottom>
           The best way to integrate your decentralized wallet.
@@ -43,6 +43,10 @@ const Landing = () => {
           <Button component={NavLink} to="/help">
             How It Works
           </Button>
+        </Box>
+
+        <Box>
+          <img src={BackgroundImg} className="hero-img" />
         </Box>
 
         {/* <Hero /> */}
