@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Avatar, Button, Container, Grid, Typography } from "@mui/material";
+import { Avatar, Box, Button, Container, Grid, Typography } from "@mui/material";
 import { Link, NavLink } from "react-router-dom";
 import LandingAppBar from "./Components/LandingAppBar";
 import { WalletContext, WalletProvider } from "../context/WalletContext";
@@ -8,18 +8,16 @@ const WalletItem = ({ name, src }) => {
   const { setWallet } = useContext(WalletContext);
 
   const handleSetWallet = () => {
-    setWallet(name)
+    setWallet(name);
   };
 
   return (
-    <Grid item align={"center"}>
-      <Button
-        component={NavLink}
-        onClick={handleSetWallet}
-        to="/import"
-      >
-        <Avatar src={src} sx={{ width: "72px", height: "72px" }} />
-        <Typography variant="p">{name}</Typography>
+    <Grid item xs={6} align={"center"}>
+      <Button component={NavLink} onClick={handleSetWallet} to="/import">
+        <Box>
+          <img src={src} className="hero-img" />
+          <Typography variant="p">{name}</Typography>
+        </Box>
       </Button>
     </Grid>
   );
@@ -34,7 +32,7 @@ const Wallets = () => {
       <Typography variant="h4" gutterBottom>
         Dapps
       </Typography>
-      <Typography variant="p">
+      <Typography variant="p" sx={{mb: 2}}>
         Registry to connect all wallets and Apps supporting WalletConnect
         Protocols to dapps
       </Typography>

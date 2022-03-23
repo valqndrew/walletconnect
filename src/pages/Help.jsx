@@ -17,9 +17,9 @@ import "./styles/styles.css";
 const Help = () => {
   return (
     <Container>
-      <Box>
-        <img src={A} className="hero-img" />
-      </Box>
+      <Typography variant="h3" gutterBottom>
+        Multi Session Wallet Authenticator
+      </Typography>
       <Typography variant="h4" gutterBottom>
         Connecting to DApps
       </Typography>
@@ -53,7 +53,7 @@ const Help = () => {
 
       <Box sx={{ display: "flex" }}>
         <img src={D} />
-        <img src={E} />
+        {/* <img src={E} /> */}
       </Box>
 
       <Typography variant="h4">
@@ -62,7 +62,7 @@ const Help = () => {
 
       <Box sx={{ display: "flex" }}>
         <img src={F} />
-        <img src={G} />
+        {/* <img src={G} /> */}
       </Box>
       <Footer />
     </Container>

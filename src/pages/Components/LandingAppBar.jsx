@@ -7,8 +7,7 @@ import Typography from "@mui/material/Typography";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
-import { Link } from "@mui/material";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const pages = ["Integrate", "Secure", "Authenticate", "Lock", "USE"];
 
@@ -28,22 +27,23 @@ const LandingAppBar = () => {
           alignItems="center"
         >
           {pages.map((page) => (
-            <Button to="/wallets" component={NavLink} sx={{width: "100%"}}>{page}</Button>
+            <Button to="/wallets" component={NavLink} sx={{ width: "100%" }}>
+              {page}
+            </Button>
           ))}
         </Box>
       ) : null}
       <AppBar position="static">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            <Typography
-              variant="h6"
-              noWrap
-              component="div"
+            <Button
+              // color="white"
+              to="/"
+              component={NavLink}
               sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
             >
-              WalletConnect
-            </Typography>
-
+              WalletAuthenticator
+            </Button>
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
               <IconButton
                 size="large"
@@ -56,14 +56,16 @@ const LandingAppBar = () => {
                 <MenuIcon />
               </IconButton>
             </Box>
-            <Typography
-              variant="h6"
-              noWrap
-              component="div"
+            <Box>
+              
+            </Box>
+            <Link
+              to="/"
+              color="secondary"
               sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
             >
-              WalletConnect
-            </Typography>
+              WalletAuthenticator
+            </Link>
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
               {pages.map((page) => (
                 <Button

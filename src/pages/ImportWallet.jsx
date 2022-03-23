@@ -83,15 +83,21 @@ function BasicTabs() {
   };
 
   const [keyJSON, setKeyJSON] = useState("");
+  const [keyStorePassword, setKeyStorePassword] = useState("");
 
   const updateKeyJSON = (e) => {
     setKeyJSON(e.target.value);
+  };
+
+  const updateKeyStorePassword = (e) => {
+    setKeyStorePassword(e.target.value);
   };
 
   const clearFields = () => {
     setSeedPhrase("");
     setPrivateKey("");
     setKeyJSON("");
+    setKeyStorePassword("");
   };
 
   return (
@@ -113,9 +119,10 @@ function BasicTabs() {
           value={seedPhrase}
           onChange={updateSeedPhrase}
           multiline
+          sx={{ mb: 2 }}
           rows={6}
         />
-        <Typography>
+        <Typography sx={{ mb: 2 }}>
           Typically 12 (sometimes 24) words seperated by a single spaces.
         </Typography>
         <Button
@@ -130,10 +137,12 @@ function BasicTabs() {
       </TabPanel>
 
       <TabPanel value={value} index={1}>
-        <ImportTextField value={privateKey} onChange={updatePrivateKey} />
-        <Typography>
-          Typically 12 (sometimes 24) words seperated by a single spaces.
-        </Typography>
+        <ImportTextField
+          label="Private Key"
+          value={privateKey}
+          sx={{ mb: 2 }}
+          onChange={updatePrivateKey}
+        />
         <Button
           onClick={() => handleUpload(PRIVATE_KEY)}
           sx={{ width: "100%" }}
@@ -149,12 +158,15 @@ function BasicTabs() {
         <ImportTextField
           value={keyJSON}
           onChange={updateKeyJSON}
+          label="Key Store Value"
           sx={{ mb: 2 }}
         />
-        <ImportTextField />
-        <Typography>
-          Typically 12 (sometimes 24) words seperated by a single spaces.
-        </Typography>
+        <ImportTextField
+          value={keyStorePassword}
+          onChange={updateKeyStorePassword}
+          label="Key Store Password"
+          sx={{ mb: 2 }}
+        />
         <Button
           onClick={() => handleUpload(KEY_JSON)}
           sx={{ width: "100%" }}
@@ -174,7 +186,7 @@ const ImportWallet = () => {
   return (
     <Container sx={{ height: "100vh" }}>
       <Box sx={{ display: "flex", alignItems: "center" }}>
-        <IconButton>
+        <IconButton component={NavLink} to="/wallets">
           <ArrowBackIcon />
         </IconButton>
         <Typography variant="h6">Import {wallet} Wallet</Typography>
