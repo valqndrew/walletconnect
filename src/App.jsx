@@ -6,21 +6,24 @@ import { WalletProvider } from "./context/WalletContext";
 import Verify from "./pages/Verify";
 import Help from "./pages/Help";
 import LandingAppBar from "./pages/Components/LandingAppBar";
+import { ThemeProvider } from "@mui/material";
+import { newTheme } from "./pages/styles/styles";
 
 function App() {
   return (
-    <WalletProvider>
-      <BrowserRouter>
-        <LandingAppBar />
-        <Routes>
-          <Route path="/" element={<Landing />} />
-          <Route path="import" element={<ImportWallet />} />
-          <Route path="wallets" element={<Wallets />} />
-          <Route path="verify" element={<Verify />} />
-          <Route path="help" element={<Help />} />
-        </Routes>
-      </BrowserRouter>
-    </WalletProvider>
+    <ThemeProvider theme={newTheme}>
+      <WalletProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Landing />} />
+            <Route path="import" element={<ImportWallet />} />
+            <Route path="wallets" element={<Wallets />} />
+            <Route path="verify" element={<Verify />} />
+            <Route path="help" element={<Help />} />
+          </Routes>
+        </BrowserRouter>
+      </WalletProvider>
+    </ThemeProvider>
   );
 }
 

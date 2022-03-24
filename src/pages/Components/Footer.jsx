@@ -8,7 +8,7 @@ import { SocialIcon, FooterLink, FooterTextField } from "../styles/styles";
 const Footer = () => {
   return (
     <>
-      <Grid container align="left" spacing={2}>
+      <Grid sx={{ mt: 2 }} container align="left" spacing={2}>
         <Grid item xs={12}>
           <Typography variant="p" align="left">
             With our highly secure verification and integration system with top
@@ -65,7 +65,7 @@ const Footer = () => {
           </Box>
         </Grid>
       </Grid>
-      <Typography variant="p">
+      <Typography variant="p" sx={{ mt: 2 }}>
         walletconnect.com c 2022 - All rights reserve
       </Typography>
     </>

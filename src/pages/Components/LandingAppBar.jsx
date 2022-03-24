@@ -8,6 +8,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import { Link, NavLink } from "react-router-dom";
+import { HomeLink } from "../styles/styles";
 
 const pages = ["Integrate", "Secure", "Authenticate", "Lock", "USE"];
 
@@ -36,14 +37,14 @@ const LandingAppBar = () => {
       <AppBar position="static">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            <Button
-              // color="white"
-              to="/"
-              component={NavLink}
-              sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
-            >
-              WalletAuthenticator
-            </Button>
+            <Box sx={{ mr: 2, display: { xs: "none", md: "flex" } }}>
+              <HomeLink to="/">
+                <Typography variant="h5" color="secondary">
+                  WalletAuthenticator
+                </Typography>
+              </HomeLink>
+            </Box>
+
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
               <IconButton
                 size="large"
@@ -56,16 +57,13 @@ const LandingAppBar = () => {
                 <MenuIcon />
               </IconButton>
             </Box>
-            <Box>
-              
+            <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+              <HomeLink to="/" color="secondary">
+                <Typography variant="h5" color="secondary">
+                  WalletAuthenticator
+                </Typography>
+              </HomeLink>
             </Box>
-            <Link
-              to="/"
-              color="secondary"
-              sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
-            >
-              WalletAuthenticator
-            </Link>
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
               {pages.map((page) => (
                 <Button

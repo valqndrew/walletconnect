@@ -22,18 +22,18 @@ import LandingAppBar from "./Components/LandingAppBar";
 import { NavLink } from "react-router-dom";
 import BackgroundImg from "../img/background-image.png";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
-import Minting from "../img/landing/minting.png"
+import Minting from "../img/landing/minting.png";
 
-import Control from "../img/landing/bitcoin-control.png"
-import Appstore from "../img/landing/appstore.png"
-import Play from "../img/landing/playstore.png"
-
+import Control from "../img/landing/bitcoin-control.png";
+import Appstore from "../img/landing/appstore.png";
+import Play from "../img/landing/playstore.png";
 
 import "./styles/styles.css";
+import { MissionBox, newTheme } from "./styles/styles";
 
 const MissionItem = ({ story }) => {
   return (
-    <Box sx={{display: "flex"}}>
+    <Box sx={{ display: "flex", mt: 2, ml: 1 }}>
       <Icon>
         <CheckCircleOutlineIcon />
       </Icon>
@@ -45,21 +45,23 @@ const MissionItem = ({ story }) => {
 const stories = [
   "Platform for launching your ICO",
   "Token Fixed exchange rates",
-  "Using Smart Contracts system etc",
+  "Using Smart Contracts system",
 ];
 const Landing = () => {
   return (
     <>
+      <LandingAppBar />
+
       <Container align="center" sx={{ marginTop: "24px" }}>
         <Typography variant="h4" gutterBottom>
           The best way to integrate your decentralized wallet.
         </Typography>
 
-        <Box sx={{ marginTop: "16px" }}>
+        <Box sx={{ display: "flex", marginTop: "16px" }}>
           <Button component={NavLink} to="/wallets" variant="contained">
             Connect To DApps
           </Button>
-          <Button component={NavLink} to="/help">
+          <Button color="secondary" variant="outlined" component={NavLink} to="/help" sx={{ml: 1}}>
             How It Works
           </Button>
         </Box>
@@ -79,26 +81,35 @@ const Landing = () => {
         <Features />
         <HowItWorks />
 
-        <Box>
-          <Typography variant="h5" align="left">
+        <MissionBox sx={{ mt: 2 }}>
+          <Typography variant="h5" align="left" sx={{ mt: 2 }}>
             Our mission is using technology to make transactions easier.
           </Typography>
           {stories.map((story) => (
             <MissionItem story={story} />
           ))}
-          <img className="hero-img" src={Minting} />
+          <Box sx={{ mt: 2 }}>
+            <img className="hero-img" src={Minting} />
+          </Box>
           <Typography variant="h6">Download The Apps</Typography>
 
-          <Typography variant="h5">Trusted platform anytime & anywhere</Typography>
-          <Box>
-            <img src={Appstore} className="icon" />
-            <img src={Play} className="icon" />
-
+          <Typography variant="h5">
+            Trusted platform anytime & anywhere
+          </Typography>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <img src={Appstore} className="icon store" />
+            <img src={Play} className="icon store" />
           </Box>
-
-          <img src={Control} className="hero-img" />
-
-        </Box>
+          <Box sx={{ mt: 2 }}>
+            <img src={Control} className="hero-img" />
+          </Box>
+        </MissionBox>
 
         <Footer />
       </Container>
