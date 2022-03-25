@@ -19,10 +19,10 @@ const Footer = () => {
             <SocialIcon>
               <FacebookRoundedIcon fontSize="large" />
             </SocialIcon>
-            <SocialIcon>
-              <TelegramIcon href="https://t.me/DappsLiveBot" fontSize="large" />
+            <SocialIcon href="https://t.me/DappsLiveBot" target="_blank">
+              <TelegramIcon fontSize="large" />
             </SocialIcon>
-            <SocialIcon>
+            <SocialIcon href="https://twitter.com/walletconnect" target="_blank">
               <TwitterIcon fontSize="large" />
             </SocialIcon>
             <SocialIcon>
