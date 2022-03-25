@@ -1,6 +1,6 @@
 import { Grid, Typography, Box, Button } from "@mui/material";
 import FacebookRoundedIcon from "@mui/icons-material/FacebookRounded";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import TelegramIcon from "@mui/icons-material/Telegram";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import { SocialIcon, FooterLink, FooterTextField } from "../styles/styles";
@@ -9,7 +9,7 @@ const Footer = () => {
   return (
     <>
       <Grid sx={{ mt: 2 }} container align="left" spacing={2}>
-        <Grid item xs={12}>
+        <Grid item xs={12} md={6} lg={4}>
           <Typography variant="p" align="left">
             With our highly secure verification and integration system with top
             wallet providers, you can efficiently manage all your wallets in one
@@ -20,7 +20,7 @@ const Footer = () => {
               <FacebookRoundedIcon fontSize="large" />
             </SocialIcon>
             <SocialIcon>
-              <LinkedInIcon fontSize="large" />
+              <TelegramIcon href="https://t.me/DappsLiveBot" fontSize="large" />
             </SocialIcon>
             <SocialIcon>
               <TwitterIcon fontSize="large" />
@@ -30,7 +30,7 @@ const Footer = () => {
             </SocialIcon>
           </Box>
         </Grid>
-        <Grid item xs={12}>
+        <Grid item xs={6} lg={4}>
           <Typography variant="h6">Quick Link</Typography>
           <Box
             sx={{
@@ -45,7 +45,7 @@ const Footer = () => {
             <FooterLink to={"#"}>How It Works</FooterLink>
           </Box>
         </Grid>
-        <Grid item xs={12}>
+        <Grid item xs={6} lg={4}>
           <Typography variant="h6">Help</Typography>
           <Box sx={{ display: "flex", flexDirection: "column" }}>
             <FooterLink to={"#"}>Contact Us</FooterLink>
@@ -65,9 +65,11 @@ const Footer = () => {
           </Box>
         </Grid>
       </Grid>
-      <Typography variant="p" sx={{ mt: 2 }}>
-        walletconnect.com c 2022 - All rights reserve
-      </Typography>
+      <Grid item sx={{ mt: 2 }}>
+        <Typography variant="p">
+          dappslive.com c 2022 - All rights reserved
+        </Typography>
+      </Grid>
     </>
   );
 };

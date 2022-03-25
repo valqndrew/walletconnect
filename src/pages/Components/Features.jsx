@@ -51,7 +51,7 @@ const features = [
 
 const Feature = ({ title, info, icon }) => {
   return (
-    <Grid item xs={12}>
+    <Grid item xs={12} md={6} lg={4}>
       <FeaturePaper>
         <img src={icon} className={"icon"} />
         <Typography variant="h6">{title}</Typography>

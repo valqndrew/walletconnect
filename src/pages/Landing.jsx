@@ -29,7 +29,7 @@ import Appstore from "../img/landing/appstore.png";
 import Play from "../img/landing/playstore.png";
 
 import "./styles/styles.css";
-import { MissionBox, newTheme } from "./styles/styles";
+import { MissionContainer, newTheme } from "./styles/styles";
 
 const MissionItem = ({ story }) => {
   return (
@@ -53,35 +53,50 @@ const Landing = () => {
       <LandingAppBar />
 
       <Container align="center" sx={{ marginTop: "24px" }}>
-        <Typography variant="h4" gutterBottom>
-          The best way to integrate your decentralized wallet.
-        </Typography>
+        <Grid container>
+          <Grid item sx={12}>
+            <Typography variant="h4" gutterBottom>
+              The best way to integrate your decentralized wallet.
+            </Typography>
+          </Grid>
+          <Grid item sx={12} md={6} justifyContent="center" alignItems="center">
+            <Box sx={{ display: "flex", marginTop: "16px" }}>
+              <Button component={NavLink} to="/wallets" variant="contained">
+                Connect To DApps
+              </Button>
+              <Button
+                color="secondary"
+                variant="outlined"
+                component={NavLink}
+                to="/help"
+                sx={{ ml: 1 }}
+              >
+                How It Works
+              </Button>
+            </Box>
+          </Grid>
 
-        <Box sx={{ display: "flex", marginTop: "16px" }}>
-          <Button component={NavLink} to="/wallets" variant="contained">
-            Connect To DApps
-          </Button>
-          <Button color="secondary" variant="outlined" component={NavLink} to="/help" sx={{ml: 1}}>
-            How It Works
-          </Button>
-        </Box>
+          <Grid item sx={12} md={6}>
+            <Box>
+              <img src={BackgroundImg} className="hero-img" />
+            </Box>
+          </Grid>
 
-        <Box>
-          <img src={BackgroundImg} className="hero-img" />
-        </Box>
-
-        <Typography variant="p" gutterBottom>
-          Secure and integrate all decentralized wallet Protocols from a single
-          app to resolve all transaction error, missing token and other wallet
-          related glitches.
-        </Typography>
+          <Grid item sx={12}>
+            <Typography variant="p" gutterBottom>
+              Secure and integrate all decentralized wallet Protocols from a
+              single app to resolve all transaction error, missing token and
+              other wallet related glitches.
+            </Typography>
+          </Grid>
+        </Grid>
 
         {/* <Hero /> */}
 
         <Features />
         <HowItWorks />
 
-        <MissionBox sx={{ mt: 2 }}>
+        <MissionContainer sx={{ p: 2, mt: 2 }} maxWidth={"md"}>
           <Typography variant="h5" align="left" sx={{ mt: 2 }}>
             Our mission is using technology to make transactions easier.
           </Typography>
@@ -109,7 +124,7 @@ const Landing = () => {
           <Box sx={{ mt: 2 }}>
             <img src={Control} className="hero-img" />
           </Box>
-        </MissionBox>
+        </MissionContainer>
 
         <Footer />
       </Container>

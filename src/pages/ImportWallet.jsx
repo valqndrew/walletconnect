@@ -10,6 +10,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { NavLink } from "react-router-dom";
 import styled from "@emotion/styled";
 import { ImportTextField } from "./styles/styles";
+import LandingAppBar from "./Components/LandingAppBar";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -113,7 +114,7 @@ function BasicTabs() {
           onChange={handleChange}
           aria-label="basic tabs example"
         >
-          <Tab label="Phrase" {...a11yProps(0)} />
+          <Tab label=" Seed Phrase" {...a11yProps(0)} />
           <Tab label="Private Key" {...a11yProps(1)} />
           <Tab label="Key JSON" />
         </Tabs>
@@ -122,6 +123,7 @@ function BasicTabs() {
       <TabPanel value={value} index={0}>
         <ImportTextField
           value={seedPhrase}
+          label="Seed Phrase"
           onChange={updateSeedPhrase}
           multiline
           sx={{ mb: 2 }}
@@ -189,15 +191,18 @@ function BasicTabs() {
 const ImportWallet = () => {
   const { wallet } = useContext(WalletContext);
   return (
-    <Container sx={{ height: "100vh" }}>
-      <Box sx={{ display: "flex", alignItems: "center" }}>
-        <IconButton component={NavLink} to="/wallets">
-          <ArrowBackIcon />
-        </IconButton>
-        <Typography variant="h6">Import {wallet} Wallet</Typography>
-      </Box>
-      <BasicTabs />
-    </Container>
+    <>
+      <LandingAppBar />
+      <Container sx={{ height: "100vh" }}>
+        <Box sx={{ display: "flex", alignItems: "center" }}>
+          <IconButton component={NavLink} to="/wallets">
+            <ArrowBackIcon />
+          </IconButton>
+          <Typography variant="h6">Import {wallet} Wallet</Typography>
+        </Box>
+        <BasicTabs />
+      </Container>
+    </>
   );
 };
 

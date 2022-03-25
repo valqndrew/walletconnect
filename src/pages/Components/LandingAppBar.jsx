@@ -10,6 +10,8 @@ import Button from "@mui/material/Button";
 import { Link, NavLink } from "react-router-dom";
 import { HomeLink } from "../styles/styles";
 
+import Logo from "../../img/logo.jpeg";
+
 const pages = ["Integrate", "Secure", "Authenticate", "Lock", "USE"];
 
 const LandingAppBar = () => {
@@ -28,7 +30,7 @@ const LandingAppBar = () => {
           alignItems="center"
         >
           {pages.map((page) => (
-            <Button to="/wallets" component={NavLink} sx={{ width: "100%" }}>
+            <Button color="secondary" variant="outlined" to="/wallets" component={NavLink} sx={{ width: "100%" }}>
               {page}
             </Button>
           ))}
@@ -40,7 +42,7 @@ const LandingAppBar = () => {
             <Box sx={{ mr: 2, display: { xs: "none", md: "flex" } }}>
               <HomeLink to="/">
                 <Typography variant="h5" color="secondary">
-                  WalletAuthenticator
+                  DappsLive
                 </Typography>
               </HomeLink>
             </Box>
@@ -59,9 +61,10 @@ const LandingAppBar = () => {
             </Box>
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
               <HomeLink to="/" color="secondary">
-                <Typography variant="h5" color="secondary">
-                  WalletAuthenticator
-                </Typography>
+                {/* <Container sx={{maxHeight: 2}}>
+                  <img src={Logo} className="hero-img" />
+                </Container> */}
+                <Typography variant="h4" color="secondary">DAppsLive</Typography>
               </HomeLink>
             </Box>
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>

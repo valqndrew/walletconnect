@@ -1,5 +1,6 @@
 import {
   Box,
+  Container,
   createTheme,
   IconButton,
   Paper,
@@ -65,7 +66,7 @@ export const HomeLink = styled(Link)(({}) => ({
   color: "white",
 }));
 
-export const MissionBox = styled(Box)(({}) => ({
+export const MissionContainer = styled(Container)(({}) => ({
   background: newTheme.palette.secondary.main,
   color: "white",
 }));

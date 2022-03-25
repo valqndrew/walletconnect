@@ -23,7 +23,7 @@ const WalletItem = ({ name, src }) => {
   };
 
   return (
-    <Grid item xs={6} align={"center"}>
+    <Grid item xs={6} md={4} lg={3} align={"center"}>
       <Button color="secondary" component={NavLink} onClick={handleSetWallet} to="/import">
         <Box>
           <img src={src} className="hero-img" />

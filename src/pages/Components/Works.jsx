@@ -33,7 +33,7 @@ const works = [
 
 const Work = ({ title, info, icon }) => {
   return (
-    <Grid item>
+    <Grid item xs={12} md={6} lg={4} sx={{mt: 4}}>
       <Box>
         <img src={icon} className="icon" />
         <Typography variant="h6">{title}</Typography>
