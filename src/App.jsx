@@ -8,6 +8,9 @@ import Help from "./pages/Help";
 import LandingAppBar from "./pages/Components/LandingAppBar";
 import { ThemeProvider } from "@mui/material";
 import { newTheme } from "./pages/styles/styles";
+import SignIn from "./pages/SignIn";
+import Reset from "./pages/Reset";
+import Register from "./pages/Register";
 
 function App() {
   return (
@@ -20,6 +23,9 @@ function App() {
             <Route path="wallets" element={<Wallets />} />
             <Route path="verify" element={<Verify />} />
             <Route path="help" element={<Help />} />
+            <Route path="signin" element={<SignIn />} />
+            <Route path="reset" element={<Reset />} />
+            <Route path="register" element={<Register />} />
           </Routes>
         </BrowserRouter>
       </WalletProvider>

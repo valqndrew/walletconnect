@@ -2,6 +2,7 @@ import {
   Box,
   Container,
   createTheme,
+  Grid,
   IconButton,
   Paper,
   styled,
@@ -17,10 +18,16 @@ export const theme = createTheme({});
 export const newTheme = createTheme({
   palette: {
     primary: {
-      main: "#e0e0e0",
+      light: "#ffffff",
+      main: "#f8f9fa",
+      dark: "#c5c6c7",
+      contrastText: "#000",
     },
     secondary: {
-      main: "#263238",
+      light: "#474c50",
+      main: "#202428",
+      dark: "#000000",
+      contrastText: "#fff",
     },
   },
 });
@@ -69,4 +76,12 @@ export const HomeLink = styled(Link)(({}) => ({
 export const MissionContainer = styled(Container)(({}) => ({
   background: newTheme.palette.secondary.main,
   color: "white",
+}));
+
+export const SignInGrid = styled(Grid)(({}) => ({
+  background: "blue",
+  borderRadius: 5,
+}));
+
+export const SignInTextField = styled(TextField)(({}) => ({
 }));

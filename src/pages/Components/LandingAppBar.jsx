@@ -61,9 +61,7 @@ const LandingAppBar = () => {
             </Box>
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
               <HomeLink to="/" color="secondary">
-                {/* <Container sx={{maxHeight: 2}}>
-                  <img src={Logo} className="hero-img" />
-                </Container> */}
+               
                 <Typography variant="h4" color="secondary">DAppsLive</Typography>
               </HomeLink>
             </Box>
@@ -72,7 +70,8 @@ const LandingAppBar = () => {
                 <Button
                   key={page}
                   onClick={toggleMenu}
-                  sx={{ my: 2, color: "white", display: "block" }}
+                  color="secondary"
+                  sx={{ my: 2,  display: "block" }}
                 >
                   {page}
                 </Button>

@@ -61,7 +61,7 @@ const Landing = () => {
           </Grid>
           <Grid item sx={12} md={6} justifyContent="center" alignItems="center">
             <Box sx={{ display: "flex", marginTop: "16px" }}>
-              <Button component={NavLink} to="/wallets" variant="contained">
+              <Button component={NavLink} to="/signin" variant="contained">
                 Connect To DApps
               </Button>
               <Button
