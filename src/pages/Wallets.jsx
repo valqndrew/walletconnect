@@ -1,17 +1,7 @@
-import React, { useContext } from "react";
-import {
-  AppBar,
-  Avatar,
-  Box,
-  Button,
-  Container,
-  Grid,
-  Typography,
-} from "@mui/material";
-import { Link, NavLink } from "react-router-dom";
-import { WalletContext, WalletProvider } from "../context/WalletContext";
-import { WalletsToolbar } from "./styles/styles";
-import WalletConnect from "../img/walletconnect-logo.svg";
+import React, { useContext, useEffect, useState } from "react";
+import { Box, Button, Container, Grid, Typography } from "@mui/material";
+import { NavLink } from "react-router-dom";
+import { WalletContext } from "../context/WalletContext";
 import "./styles/styles.css";
 import LandingAppBar from "./Components/LandingAppBar";
 
@@ -24,41 +14,18 @@ const WalletItem = ({ name, src }) => {
 
   return (
     <Grid item xs={6} md={4} lg={3} align={"center"}>
-      <Button color="secondary" component={NavLink} onClick={handleSetWallet} to="/import">
+      <Button
+        color="secondary"
+        component={NavLink}
+        onClick={handleSetWallet}
+        to="/import"
+      >
         <Box>
           <img src={src} className="hero-img" />
           <Typography variant="p">{name}</Typography>
         </Box>
       </Button>
     </Grid>
-  );
-};
-
-const WalletsAppBar = () => {
-  return (
-    <Box>
-      <AppBar position="static" sx={{ backgroundColor: "white" }}>
-        <WalletsToolbar>
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "space-evenly",
-              alignItems: "center",
-            }}
-          >
-            <Typography variant="h6" color="secondary">
-              Connect DApps
-            </Typography>
-            {/* <Container> */}
-              <img src={WalletConnect} className="icon" />
-            {/* </Container> */}
-            <Typography variant="h6" color="secondary">
-              Wallets
-            </Typography>
-          </Box>
-        </WalletsToolbar>
-      </AppBar>
-    </Box>
   );
 };
 
@@ -70,6 +37,7 @@ const Wallets = () => {
     <>
       <LandingAppBar />
       <Container align="center">
+        <Typography gutterBottom>Welcome {name}</Typography>
         <Typography variant="h4" gutterBottom>
           Dapps
         </Typography>
@@ -78,8 +46,8 @@ const Wallets = () => {
           Protocols to dapps
         </Typography>
         <Grid container justifyContent={"center"} spacing={12}>
-          {wallets.map(({ name, src }) => (
-            <WalletItem name={name} src={src} />
+          {wallets.map(({ name, src }, index) => (
+            <WalletItem name={name} src={src} key={index} />
           ))}
         </Grid>
       </Container>

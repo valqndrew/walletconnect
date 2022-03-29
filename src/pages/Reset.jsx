@@ -1,20 +1,14 @@
 import { Button, Container, Grid, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import { sendPasswordResetEmail } from "firebase/auth";
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
-import { auth } from "../backend/firebase";
 import { SignInGrid, SignInTextField } from "./styles/styles";
 
 const Reset = () => {
   const [email, setEmail] = useState("");
-  const [user, loading, error] = useAuthState(auth);
   const navigate = useNavigate();
-  useEffect(() => {
-    if (loading) return;
-    if (user) navigate("/wallets");
-  }, [user, loading]);
+  
   return (
     <Grid
       container
@@ -41,7 +35,6 @@ const Reset = () => {
             <Button
               sx={{ mt: 2, p: 2 }}
               variant="contained"
-              onClick={() => sendPasswordResetEmail(email)}
             >
               Send Password Reset Email
             </Button>

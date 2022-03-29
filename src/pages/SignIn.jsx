@@ -4,13 +4,10 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { SignInGrid, SignInTextField } from "./styles/styles";
-import { auth, signInWithGoogle } from "../backend/firebase";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [user, loading, error] = useAuthState(auth);
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (loading) {
@@ -50,7 +47,6 @@ const SignIn = () => {
             <Button
               sx={{ mt: 2, p: 2 }}
               variant="contained"
-              onClick={() => signInWithEmailAndPassword(email, password)}
             >
               Sign In
             </Button>

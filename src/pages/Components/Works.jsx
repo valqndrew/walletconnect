@@ -48,8 +48,8 @@ const HowItWorks = () => {
     <>
       <SectionHeader variant="h4">How To Be Secure</SectionHeader>
       <Grid container align="center" justifyContent="center" spacing={2}>
-        {works.map(({ title, info, icon }) => (
-          <Work title={title} info={info} icon={icon} />
+        {works.map(({ title, info, icon }, index) => (
+          <Work key={index} title={title} info={info} icon={icon} />
         ))}
       </Grid>
     </>

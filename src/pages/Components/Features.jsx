@@ -77,8 +77,8 @@ const Features = () => {
       </SectionHeader>
 
       <Grid container spacing={8} align="center" justifyContent="center">
-        {features.map(({ title, info, icon }) => (
-          <Feature title={title} info={info} icon={icon} />
+        {features.map(({ title, info, icon }, index) => (
+          <Feature key={index} title={title} info={info} icon={icon} />
         ))}
       </Grid>
     </>
