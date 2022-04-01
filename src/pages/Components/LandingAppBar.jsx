@@ -30,7 +30,13 @@ const LandingAppBar = () => {
           alignItems="center"
         >
           {pages.map((page) => (
-            <Button color="secondary" variant="outlined" to="/wallets" component={NavLink} sx={{ width: "100%" }}>
+            <Button
+              color="secondary"
+              variant="outlined"
+              to="/wallets"
+              component={NavLink}
+              sx={{ width: "100%" }}
+            >
               {page}
             </Button>
           ))}
@@ -41,9 +47,7 @@ const LandingAppBar = () => {
           <Toolbar disableGutters>
             <Box sx={{ mr: 2, display: { xs: "none", md: "flex" } }}>
               <HomeLink to="/">
-                <Typography variant="h5" color="secondary">
-                  DappsLive
-                </Typography>
+                <Typography variant="h5">DappsLive</Typography>
               </HomeLink>
             </Box>
 
@@ -60,9 +64,8 @@ const LandingAppBar = () => {
               </IconButton>
             </Box>
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-              <HomeLink to="/" color="secondary">
-               
-                <Typography variant="h4" color="secondary">DAppsLive</Typography>
+              <HomeLink to="/">
+                <Typography variant="h4">DAppsLive</Typography>
               </HomeLink>
             </Box>
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
@@ -70,8 +73,7 @@ const LandingAppBar = () => {
                 <Button
                   key={page}
                   onClick={toggleMenu}
-                  color="secondary"
-                  sx={{ my: 2,  display: "block" }}
+                  sx={{ my: 2, display: "block" }}
                 >
                   {page}
                 </Button>

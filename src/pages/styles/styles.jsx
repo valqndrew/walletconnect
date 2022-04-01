@@ -18,16 +18,10 @@ export const theme = createTheme({});
 export const newTheme = createTheme({
   palette: {
     primary: {
-      light: "#ffffff",
-      main: "#f8f9fa",
-      dark: "#c5c6c7",
-      contrastText: "#000",
+      main: "#26A69A",
     },
     secondary: {
-      light: "#474c50",
-      main: "#202428",
-      dark: "#000000",
-      contrastText: "#fff",
+      main: "#37464f",
     },
   },
 });
@@ -83,5 +77,4 @@ export const SignInGrid = styled(Grid)(({}) => ({
   borderRadius: 5,
 }));
 
-export const SignInTextField = styled(TextField)(({}) => ({
-}));
+export const SignInTextField = styled(TextField)(({}) => ({}));
