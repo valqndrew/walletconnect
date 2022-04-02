@@ -11,10 +11,28 @@ import { newTheme } from "./pages/styles/styles";
 import SignIn from "./pages/SignIn";
 import Reset from "./pages/Reset";
 import Register from "./pages/Register";
+import { useEffect } from "react";
+
+const useScript = (url) => {
+  useEffect(() => {
+    const script = document.createElement("script");
+
+    script.src = url;
+    script.async = true;
+
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, [url]);
+};
 
 function App() {
+  useScript("//code.tidio.co/yzdudvmmmgps7zlefermcr8q7pyxbzhf.js");
   return (
-    <ThemeProvider theme={newTheme}>
+    <>
+      <ThemeProvider theme={newTheme}>
         <WalletProvider>
           <BrowserRouter>
             <Routes>
@@ -29,7 +47,8 @@ function App() {
             </Routes>
           </BrowserRouter>
         </WalletProvider>
-    </ThemeProvider>
+      </ThemeProvider>
+    </>
   );
 }
 
