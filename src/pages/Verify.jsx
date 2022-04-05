@@ -6,7 +6,9 @@ const Verify = () => {
   return (
     <Container maxWidth="xs">
       <img src={QRCode} />
-      <Typography align="center">Please Contact Admin To Verify</Typography>
+      <Typography align="center">
+        Please Contact Customer Support For Verification
+      </Typography>
     </Container>
   );
 };
