@@ -26,3 +26,8 @@
 .logo {
   height: 10%;
 }
+
+.appbar-logo {
+  height: 100%;
+  width: 100%;
+}
